@@ -1,0 +1,207 @@
+
+R version 3.3.1 (2016-06-21) -- "Bug in Your Hair"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[R.app GUI 1.68 (7238) x86_64-apple-darwin13.4.0]
+
+[History restored from /Users/BHupka/.Rapp.history]
+
+> #B.3.1 Vectors
+> Y <- c(8.3, 8.6, 10.7, 10.8, 11, 11, 11.1, 11.2, 11.3, 11.4)
+> #Sequences
+> 1:4
+[1] 1 2 3 4
+> 4:1
+[1] 4 3 2 1
+> -1:3
+[1] -1  0  1  2  3
+> -(1:3)
+[1] -1 -2 -3
+> seq(from = 1, to = 3, by = 0.2)
+ [1] 1.0 1.2 1.4 1.6 1.8 2.0 2.2 2.4 2.6 2.8 3.0
+> seq(1, 3, by = 0.2)
+ [1] 1.0 1.2 1.4 1.6 1.8 2.0 2.2 2.4 2.6 2.8 3.0
+> seq(1, 3, length = 7)
+[1] 1.000000 1.333333 1.666667 2.000000 2.333333 2.666667 3.000000
+> rep(1, 3)
+[1] 1 1 1
+> rep(1:3, 2)
+[1] 1 2 3 1 2 3
+> rep(1:3, each = 2)
+[1] 1 1 2 2 3 3
+> #B.3.2 Getting information about vectors
+> sum(Y)
+[1] 105.4
+> mean(Y)
+[1] 10.54
+> max(Y)
+[1] 11.4
+> lenth(Y)
+Error: could not find function "lenth"
+> length(Y)
+[1] 10
+> summary(Y)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   8.30   10.72   11.00   10.54   11.18   11.40 
+> Names = c("Sarah", "Yunluan")
+> Names
+[1] "Sarah"   "Yunluan"
+> b = c(TRUE, FALSE)
+> b
+[1]  TRUE FALSE
+> class(Y)
+[1] "numeric"
+> class(b)
+[1] "logical"
+> Y>10
+ [1] FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+> Y > mean(Y)
+ [1] FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+> Y == 11
+ [1] FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE
+> Y != 11
+ [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+> #Algebra with vectors
+> a = 1:3
+> b = 4:6; a+b
+[1] 5 7 9
+> a * b
+[1]  4 10 18
+> a/b
+[1] 0.25 0.40 0.50
+> a + 1
+[1] 2 3 4
+> a *2
+[1] 2 4 6
+> 1/a
+[1] 1.0000000 0.5000000 0.3333333
+> a * 1:2
+[1] 1 4 3
+Warning message:
+In a * 1:2 :
+  longer object length is not a multiple of shorter object length
+> a * c(1,2,1)
+[1] 1 4 3
+> 1:4 * 1:2
+[1] 1 4 3 8
+> #B.3.3 Extraction and missing values
+> Y[1]
+[1] 8.3
+> Y[1:3]
+[1]  8.3  8.6 10.7
+> Y > mean(Y)
+ [1] FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+> Y[Y > mean(Y)]
+[1] 10.7 10.8 11.0 11.0 11.1 11.2 11.3 11.4
+> mean(Y)
+[1] 10.54
+> a = c(5, 3, 6, NA)
+> a
+[1]  5  3  6 NA
+> is.na(a)
+[1] FALSE FALSE FALSE  TRUE
+> !is.na(a)
+[1]  TRUE  TRUE  TRUE FALSE
+> a[!is.na(a)]
+[1] 5 3 6
+> na.exclude(a)
+[1] 5 3 6
+attr(,"na.action")
+[1] 4
+attr(,"class")
+[1] "exclude"
+> attr(,"na.action")
+Error in attr(, "na.action") : argument 1 is empty
+> mean(a)
+[1] NA
+> mean(a, na.rm = TRUE)
+[1] 4.666667
+> d = na.exclude(a)
+> mean(d)
+[1] 4.666667
+> B.3.4 Matrices
+Error: unexpected symbol in "B.3.4 Matrices"
+> #B.3.4 Matrices
+> matrix(letters[1:4], ncol = 2)
+     [,1] [,2]
+[1,] "a"  "c" 
+[2,] "b"  "d" 
+> M = matrix(1:4, nrow = 2)
+> M
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+> M2 = matrix(1:4, nrow = 2, byrow = TRUE)
+> M2
+     [,1] [,2]
+[1,]    1    2
+[2,]    3    4
+> I = diag(1, nrow = 2)
+> I
+     [,1] [,2]
+[1,]    1    0
+[2,]    0    1
+> Minv = solve(M)
+> M %*% Minv
+     [,1] [,2]
+[1,]    1    0
+[2,]    0    1
+> qr.solve()
+Error in is.qr(a) : argument "a" is missing, with no default
+> qr.solve(M)
+     [,1] [,2]
+[1,]   -2  1.5
+[2,]    1 -0.5
+> #Extraction in matrices
+> M[1, 2]
+[1] 3
+> M[1, 1:2]
+[1] 1 3
+> M[,2]
+[1] 3 4
+> M[,]
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+> #Simple matrix algebra skipped
+> #B.3.5 Data frames
+> dat = data.frame(species = c("S.altissima", "S.rugosa", "E.graminifolia", "A.pilosus"), treatment = factor(c("Control", "Water", "Control", "Water")), height = c(1.1, 0.8, 0.9, 1), width = c(1, 1.7, 0.6, 0.2))
+> help(factor)
+starting httpd help server ... done
+> dat
+         species treatment height width
+1    S.altissima   Control    1.1   1.0
+2       S.rugosa     Water    0.8   1.7
+3 E.graminifolia   Control    0.9   0.6
+4      A.pilosus     Water    1.0   0.2
+> dat [2,]
+   species treatment height width
+2 S.rugosa     Water    0.8   1.7
+> dat[3,4]
+[1] 0.6
+> dat[,2] == "Water"
+[1] FALSE  TRUE FALSE  TRUE
+> dat[dat[,2] == "Water", ]
+    species treatment height width
+2  S.rugosa     Water    0.8   1.7
+4 A.pilosus     Water    1.0   0.2
+> subset(dat, treatment == "Water")
+    species treatment height width
+2  S.rugosa     Water    0.8   1.7
+4 A.pilosus     Water    1.0   0.2
+> 
